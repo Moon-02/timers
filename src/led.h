@@ -7,10 +7,11 @@
 
 enum LED {
 	/* PCB names */
-	LED1, LED2, LED3, LED4,
+	LED1, LED2, LED3, LED4,  BBLED1R, BBLED1G, BBLED1B,
 	/* logical names */
 	left_green=LED1, right_green,
-	left_blue,	right_blue
+	left_blue,	right_blue,
+	bb_red, bb_green, bb_blue
 };
 
 /* function to initialise the LED gpio regiters */

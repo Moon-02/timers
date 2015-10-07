@@ -36,6 +36,6 @@ int main() {
 void ledone(void) {
 	static int n=0;
 	ledToggle(n);
-	n = (n+1)%4;
+	n = (n+1)%7;
 }
 
