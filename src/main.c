@@ -23,19 +23,17 @@ void buttonsTask(void);
 static softTimer_t timer[3];
 
 
-void ledone(void);
+void ledaction(void);
 int main() {
 	led_Init();
 	
-	timer0Init(2, ledone);
+	timer0Init(2, ledaction);
 
 	while (true) {
 	}
 }
 
-void ledone(void) {
-	static int n=0;
-	ledToggle(n);
-	n = (n+1)%7;
+void ledaction(void) {
+	ledToggle(left_green);
 }
 
