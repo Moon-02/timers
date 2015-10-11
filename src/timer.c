@@ -19,13 +19,15 @@ void timer0Init(uint32_t tickHz, void (*handler)(),float duty) {
 	LPC_TIM0->TCR |= (1UL << 0); /* enable the timer */
 }
 
-void timer1Init(uint32_t tickHz, void (*handler)()) {
+void timer1Init(uint32_t tickHz, void (*handler)(), float duty) {
 	LPC_SC->PCONP |= (1UL << 2); /* ensure power to TIMER1 */
 	LPC_TIM1->TCR = 0; /* disable the timer during configuration */
 	LPC_TIM1->PR = 0; /* don't scale peripheral clock */
 	LPC_TIM1->CTCR = 0; /* select timer mode, not counter mode */
 	LPC_TIM1->MR0 = PeripheralClock / tickHz - 1; /* set match register for required rate */
 	LPC_TIM1->MCR = 0x03UL; /* interrupt and reset on match */
+	LPC_TIM1->MR1 = LPC_TIM1->MR0*duty; /* duty cycle */
+	LPC_TIM1->MCR |= (1UL<<3);
 	timer1UserDefinedHandler = handler; /* install the user-defined handler */
 	LPC_TIM1->IR = 0x3F; /* reset all TIMER1 interrupts */
 	NVIC_EnableIRQ(TIMER1_IRQn); /* enable the TIMER1 interrupt in the NVIC */

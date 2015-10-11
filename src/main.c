@@ -29,6 +29,7 @@ int main() {
 	led_Init();
 	
 	timer0Init(2, led1action, 0.2);
+	timer1Init(2, led2action, 0.8);
 
 
 	while (true) {
@@ -44,5 +45,9 @@ void led1action(void) {
 }
 
 void led2action(void) {
-	ledToggle(right_green);
+	if(LPC_TIM1->IR&(1UL) ){
+		ledOn(right_green);
+	}else{
+		ledOff(right_green);
+	}
 }

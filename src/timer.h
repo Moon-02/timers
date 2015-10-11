@@ -10,7 +10,7 @@ typedef struct {
 } softTimer_t;
 
 void timer0Init(uint32_t tickHz, void (*handler)(), float duty);
-void timer1Init(uint32_t tickHz, void (*handler)());
+void timer1Init(uint32_t tickHz, void (*handler)(), float duty);
 void sysTickInit(uint32_t tickHz, void (*handler)());
 void softTimerInit(softTimer_t *timer, uint32_t tickHz, void (*handler)());
 
