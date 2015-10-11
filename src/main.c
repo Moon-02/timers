@@ -22,20 +22,20 @@ void buttonsTask(void);
 
 static softTimer_t timer[3];
 
-void ledaction(void);
+void led1action(void);
 void led2action(void);
 
 int main() {
 	led_Init();
 	
-	timer0Init(2, ledaction);
+	timer0Init(2, led1action);
 	timer1Init(4, led2action);
 
 	while (true) {
 	}
 }
 
-void ledaction(void) {
+void led1action(void) {
 	ledToggle(left_green);
 }
 
